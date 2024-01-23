@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <style>
+        #area1, #area2 {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            height: 200px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <p id="trigger1" onmouseover="loadDocument('documento1.html', 'area1')">wifi</p>
+        <p id="trigger2" onmouseover="loadDocument('documento2.html', 'area2')">drago</p>
+    </div>
+
+    <div id="area1"></div>
+    <div id="area2"></div>
+
+    <script>
+        function loadDocument(url, targetId) {
+            var targetElement = document.getElementById(targetId);
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    targetElement.innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>
